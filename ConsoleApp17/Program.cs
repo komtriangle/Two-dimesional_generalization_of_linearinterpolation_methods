@@ -139,6 +139,20 @@ namespace ConsoleApp17
             }
 
         }
+        static (double,double) MinValuesfAndg()
+        {
+            var val0 = Math.Abs(f(x0, y0)) + Math.Abs(g(x0, y0));
+            var val1 = Math.Abs(f(x1, y1)) + Math.Abs(g(x1, y1));
+            var val2 = Math.Abs(f(x2, y2)) + Math.Abs(g(x2, y2));
+
+            if(val0< val1 && val0 < val2)
+                return (x0, y0);
+            if (val1 < val2)
+                return (x1, y1);
+            else
+                return (x2, y2);
+
+        }
         static void Main(string[] args)
         {
             double xp0 = 0, yp1 = 0;
@@ -159,7 +173,8 @@ namespace ConsoleApp17
             for(int i = 0; i < 5; i++)
             {
                 TwoDemetnialLinearInterpolation();
-                Console.WriteLine($"X: {x2} Y: {y2} f(x,y): {f(x2, y2)} g(x,y): {g(x2,y2)}");
+                var point = MinValuesfAndg();
+                Console.WriteLine($"x: {point.Item1}, y: {point.Item2}  f(x,y): {f(point.Item1, point.Item2)},  g(x,y): {g(point.Item1, point.Item2)}");
 
             }
 
